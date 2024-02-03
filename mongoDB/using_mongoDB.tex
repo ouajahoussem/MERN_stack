@@ -1,0 +1,1021 @@
+> db.students.find({lucky_number: { $lte: 10 }}).pretty()
+{
+	"_id" : ObjectId("61550294246358961f04babd"),
+	"name" : "Elon Musk",
+	"home_state" : "California",
+	"lucky_number" : 4,
+	"birthday" : {
+		"month" : 3,
+		"day" : 5,
+		"year" : 1968
+	}
+}
+> db.students.find({lucky_number: {$gte: 1, $lte: 9}}).pretty()
+{
+	"_id" : ObjectId("61550294246358961f04babd"),
+	"name" : "Elon Musk",
+	"home_state" : "California",
+	"lucky_number" : 4,
+	"birthday" : {
+		"month" : 3,
+		"day" : 5,
+		"year" : 1968
+	}
+}
+> db.students.find().pretty()
+{
+	"_id" : ObjectId("61550237246358961f04babc"),
+	"name" : "Michael Jordan",
+	"home_state" : "North Carolina",
+	"lucky_number" : 23,
+	"birthday" : {
+		"month" : 1,
+		"day" : 28,
+		"year" : 1965
+	}
+}
+{
+	"_id" : ObjectId("61550294246358961f04babd"),
+	"name" : "Elon Musk",
+	"home_state" : "California",
+	"lucky_number" : 4,
+	"birthday" : {
+		"month" : 3,
+		"day" : 5,
+		"year" : 1968
+	}
+}
+{
+	"_id" : ObjectId("615502c9246358961f04babe"),
+	"name" : "Bill Gates",
+	"home_state" : "Washington",
+	"lucky_number" : 13,
+	"birthday" : {
+		"month" : 10,
+		"day" : 2,
+		"year" : 1958
+	}
+}
+{
+	"_id" : ObjectId("615502fa246358961f04babf"),
+	"name" : "Billy Bob",
+	"home_state" : "Florida",
+	"lucky_number" : 80,
+	"birthday" : {
+		"month" : 7,
+		"day" : 8,
+		"year" : 1974
+	}
+}
+{
+	"_id" : ObjectId("61550339246358961f04bac0"),
+	"name" : "Josh Gendal",
+	"home_state" : "Florida",
+	"lucky_number" : 14,
+	"birthday" : {
+		"month" : 1,
+		"day" : 5,
+		"year" : 1991
+	}
+}
+> db.students.updateMany({}, {$set: {interests: ['coding', 'brunch', 'MongoDB']}})
+{ "acknowledged" : true, "matchedCount" : 5, "modifiedCount" : 5 }
+> db.students.find().pretty()
+{
+	"_id" : ObjectId("61550237246358961f04babc"),
+	"name" : "Michael Jordan",
+	"home_state" : "North Carolina",
+	"lucky_number" : 23,
+	"birthday" : {
+		"month" : 1,
+		"day" : 28,
+		"year" : 1965
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB"
+	]
+}
+{
+	"_id" : ObjectId("61550294246358961f04babd"),
+	"name" : "Elon Musk",
+	"home_state" : "California",
+	"lucky_number" : 4,
+	"birthday" : {
+		"month" : 3,
+		"day" : 5,
+		"year" : 1968
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB"
+	]
+}
+{
+	"_id" : ObjectId("615502c9246358961f04babe"),
+	"name" : "Bill Gates",
+	"home_state" : "Washington",
+	"lucky_number" : 13,
+	"birthday" : {
+		"month" : 10,
+		"day" : 2,
+		"year" : 1958
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB"
+	]
+}
+{
+	"_id" : ObjectId("615502fa246358961f04babf"),
+	"name" : "Billy Bob",
+	"home_state" : "Florida",
+	"lucky_number" : 80,
+	"birthday" : {
+		"month" : 7,
+		"day" : 8,
+		"year" : 1974
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB"
+	]
+}
+{
+	"_id" : ObjectId("61550339246358961f04bac0"),
+	"name" : "Josh Gendal",
+	"home_state" : "Florida",
+	"lucky_number" : 14,
+	"birthday" : {
+		"month" : 1,
+		"day" : 5,
+		"year" : 1991
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB"
+	]
+}
+> db.students.update({name: 'Bill Gates'}, {$push: 'Microsoft'})
+WriteResult({
+	"nMatched" : 0,
+	"nUpserted" : 0,
+	"nModified" : 0,
+	"writeError" : {
+		"code" : 9,
+		"errmsg" : "Modifiers operate on fields but we found type string instead. For example: {$mod: {<field>: ...}} not {$push: \"Microsoft\"}"
+	}
+})
+> db.students.update({name: 'Bill Gates'}, {$push: {interests: 'Microsoft'}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.students.find().pretty()
+{
+	"_id" : ObjectId("61550237246358961f04babc"),
+	"name" : "Michael Jordan",
+	"home_state" : "North Carolina",
+	"lucky_number" : 23,
+	"birthday" : {
+		"month" : 1,
+		"day" : 28,
+		"year" : 1965
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB"
+	]
+}
+{
+	"_id" : ObjectId("61550294246358961f04babd"),
+	"name" : "Elon Musk",
+	"home_state" : "California",
+	"lucky_number" : 4,
+	"birthday" : {
+		"month" : 3,
+		"day" : 5,
+		"year" : 1968
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB"
+	]
+}
+{
+	"_id" : ObjectId("615502c9246358961f04babe"),
+	"name" : "Bill Gates",
+	"home_state" : "Washington",
+	"lucky_number" : 13,
+	"birthday" : {
+		"month" : 10,
+		"day" : 2,
+		"year" : 1958
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB",
+		"Microsoft"
+	]
+}
+{
+	"_id" : ObjectId("615502fa246358961f04babf"),
+	"name" : "Billy Bob",
+	"home_state" : "Florida",
+	"lucky_number" : 80,
+	"birthday" : {
+		"month" : 7,
+		"day" : 8,
+		"year" : 1974
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB"
+	]
+}
+{
+	"_id" : ObjectId("61550339246358961f04bac0"),
+	"name" : "Josh Gendal",
+	"home_state" : "Florida",
+	"lucky_number" : 14,
+	"birthday" : {
+		"month" : 1,
+		"day" : 5,
+		"year" : 1991
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB"
+	]
+}
+> db.students.update({name: 'Josh Gendal'}, {$push: {interests: 'guitar'}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.students.find().pretty()
+{
+	"_id" : ObjectId("61550237246358961f04babc"),
+	"name" : "Michael Jordan",
+	"home_state" : "North Carolina",
+	"lucky_number" : 23,
+	"birthday" : {
+		"month" : 1,
+		"day" : 28,
+		"year" : 1965
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB"
+	]
+}
+{
+	"_id" : ObjectId("61550294246358961f04babd"),
+	"name" : "Elon Musk",
+	"home_state" : "California",
+	"lucky_number" : 4,
+	"birthday" : {
+		"month" : 3,
+		"day" : 5,
+		"year" : 1968
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB"
+	]
+}
+{
+	"_id" : ObjectId("615502c9246358961f04babe"),
+	"name" : "Bill Gates",
+	"home_state" : "Washington",
+	"lucky_number" : 13,
+	"birthday" : {
+		"month" : 10,
+		"day" : 2,
+		"year" : 1958
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB",
+		"Microsoft"
+	]
+}
+{
+	"_id" : ObjectId("615502fa246358961f04babf"),
+	"name" : "Billy Bob",
+	"home_state" : "Florida",
+	"lucky_number" : 80,
+	"birthday" : {
+		"month" : 7,
+		"day" : 8,
+		"year" : 1974
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB"
+	]
+}
+{
+	"_id" : ObjectId("61550339246358961f04bac0"),
+	"name" : "Josh Gendal",
+	"home_state" : "Florida",
+	"lucky_number" : 14,
+	"birthday" : {
+		"month" : 1,
+		"day" : 5,
+		"year" : 1991
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB",
+		"guitar"
+	]
+}
+> db.students.update({name: 'Michael Jordan'}, {$push: {interests: 'basketball'}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.students.find().pretty()
+{
+	"_id" : ObjectId("61550237246358961f04babc"),
+	"name" : "Michael Jordan",
+	"home_state" : "North Carolina",
+	"lucky_number" : 23,
+	"birthday" : {
+		"month" : 1,
+		"day" : 28,
+		"year" : 1965
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB",
+		"basketball"
+	]
+}
+{
+	"_id" : ObjectId("61550294246358961f04babd"),
+	"name" : "Elon Musk",
+	"home_state" : "California",
+	"lucky_number" : 4,
+	"birthday" : {
+		"month" : 3,
+		"day" : 5,
+		"year" : 1968
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB"
+	]
+}
+{
+	"_id" : ObjectId("615502c9246358961f04babe"),
+	"name" : "Bill Gates",
+	"home_state" : "Washington",
+	"lucky_number" : 13,
+	"birthday" : {
+		"month" : 10,
+		"day" : 2,
+		"year" : 1958
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB",
+		"Microsoft"
+	]
+}
+{
+	"_id" : ObjectId("615502fa246358961f04babf"),
+	"name" : "Billy Bob",
+	"home_state" : "Florida",
+	"lucky_number" : 80,
+	"birthday" : {
+		"month" : 7,
+		"day" : 8,
+		"year" : 1974
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB"
+	]
+}
+{
+	"_id" : ObjectId("61550339246358961f04bac0"),
+	"name" : "Josh Gendal",
+	"home_state" : "Florida",
+	"lucky_number" : 14,
+	"birthday" : {
+		"month" : 1,
+		"day" : 5,
+		"year" : 1991
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB",
+		"guitar"
+	]
+}
+> db.students.update({name: 'Elon Musk'}, {$push: {interests: 'taxes'}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.students.find().pretty()
+{
+	"_id" : ObjectId("61550237246358961f04babc"),
+	"name" : "Michael Jordan",
+	"home_state" : "North Carolina",
+	"lucky_number" : 23,
+	"birthday" : {
+		"month" : 1,
+		"day" : 28,
+		"year" : 1965
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB",
+		"basketball"
+	]
+}
+{
+	"_id" : ObjectId("61550294246358961f04babd"),
+	"name" : "Elon Musk",
+	"home_state" : "California",
+	"lucky_number" : 4,
+	"birthday" : {
+		"month" : 3,
+		"day" : 5,
+		"year" : 1968
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB",
+		"taxes"
+	]
+}
+{
+	"_id" : ObjectId("615502c9246358961f04babe"),
+	"name" : "Bill Gates",
+	"home_state" : "Washington",
+	"lucky_number" : 13,
+	"birthday" : {
+		"month" : 10,
+		"day" : 2,
+		"year" : 1958
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB",
+		"Microsoft"
+	]
+}
+{
+	"_id" : ObjectId("615502fa246358961f04babf"),
+	"name" : "Billy Bob",
+	"home_state" : "Florida",
+	"lucky_number" : 80,
+	"birthday" : {
+		"month" : 7,
+		"day" : 8,
+		"year" : 1974
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB"
+	]
+}
+{
+	"_id" : ObjectId("61550339246358961f04bac0"),
+	"name" : "Josh Gendal",
+	"home_state" : "Florida",
+	"lucky_number" : 14,
+	"birthday" : {
+		"month" : 1,
+		"day" : 5,
+		"year" : 1991
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB",
+		"guitar"
+	]
+}
+> db.students.update({name: 'Elon Musk'}, {$pull: {interests: 'taxes'}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.students.find().pretty()
+{
+	"_id" : ObjectId("61550237246358961f04babc"),
+	"name" : "Michael Jordan",
+	"home_state" : "North Carolina",
+	"lucky_number" : 23,
+	"birthday" : {
+		"month" : 1,
+		"day" : 28,
+		"year" : 1965
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB",
+		"basketball"
+	]
+}
+{
+	"_id" : ObjectId("61550294246358961f04babd"),
+	"name" : "Elon Musk",
+	"home_state" : "California",
+	"lucky_number" : 4,
+	"birthday" : {
+		"month" : 3,
+		"day" : 5,
+		"year" : 1968
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB"
+	]
+}
+{
+	"_id" : ObjectId("615502c9246358961f04babe"),
+	"name" : "Bill Gates",
+	"home_state" : "Washington",
+	"lucky_number" : 13,
+	"birthday" : {
+		"month" : 10,
+		"day" : 2,
+		"year" : 1958
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB",
+		"Microsoft"
+	]
+}
+{
+	"_id" : ObjectId("615502fa246358961f04babf"),
+	"name" : "Billy Bob",
+	"home_state" : "Florida",
+	"lucky_number" : 80,
+	"birthday" : {
+		"month" : 7,
+		"day" : 8,
+		"year" : 1974
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB"
+	]
+}
+{
+	"_id" : ObjectId("61550339246358961f04bac0"),
+	"name" : "Josh Gendal",
+	"home_state" : "Florida",
+	"lucky_number" : 14,
+	"birthday" : {
+		"month" : 1,
+		"day" : 5,
+		"year" : 1991
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB",
+		"guitar"
+	]
+}
+> db.students.insert({name: 'Joe Schmo', home_state: 'California', lucky_number: 8, birthday: {month: 1, day: 1, year: 1989}})
+WriteResult({ "nInserted" : 1 })
+> db.students.find().pretty()
+{
+	"_id" : ObjectId("61550237246358961f04babc"),
+	"name" : "Michael Jordan",
+	"home_state" : "North Carolina",
+	"lucky_number" : 23,
+	"birthday" : {
+		"month" : 1,
+		"day" : 28,
+		"year" : 1965
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB",
+		"basketball"
+	]
+}
+{
+	"_id" : ObjectId("61550294246358961f04babd"),
+	"name" : "Elon Musk",
+	"home_state" : "California",
+	"lucky_number" : 4,
+	"birthday" : {
+		"month" : 3,
+		"day" : 5,
+		"year" : 1968
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB"
+	]
+}
+{
+	"_id" : ObjectId("615502c9246358961f04babe"),
+	"name" : "Bill Gates",
+	"home_state" : "Washington",
+	"lucky_number" : 13,
+	"birthday" : {
+		"month" : 10,
+		"day" : 2,
+		"year" : 1958
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB",
+		"Microsoft"
+	]
+}
+{
+	"_id" : ObjectId("615502fa246358961f04babf"),
+	"name" : "Billy Bob",
+	"home_state" : "Florida",
+	"lucky_number" : 80,
+	"birthday" : {
+		"month" : 7,
+		"day" : 8,
+		"year" : 1974
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB"
+	]
+}
+{
+	"_id" : ObjectId("61550339246358961f04bac0"),
+	"name" : "Josh Gendal",
+	"home_state" : "Florida",
+	"lucky_number" : 14,
+	"birthday" : {
+		"month" : 1,
+		"day" : 5,
+		"year" : 1991
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB",
+		"guitar"
+	]
+}
+{
+	"_id" : ObjectId("61550ae0246358961f04bac1"),
+	"name" : "Joe Schmo",
+	"home_state" : "California",
+	"lucky_number" : 8,
+	"birthday" : {
+		"month" : 1,
+		"day" : 1,
+		"year" : 1989
+	}
+}
+> db.students.remove({home_state: 'California'})
+WriteResult({ "nRemoved" : 2 })
+> db.students.find().pretty()
+{
+	"_id" : ObjectId("61550237246358961f04babc"),
+	"name" : "Michael Jordan",
+	"home_state" : "North Carolina",
+	"lucky_number" : 23,
+	"birthday" : {
+		"month" : 1,
+		"day" : 28,
+		"year" : 1965
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB",
+		"basketball"
+	]
+}
+{
+	"_id" : ObjectId("615502c9246358961f04babe"),
+	"name" : "Bill Gates",
+	"home_state" : "Washington",
+	"lucky_number" : 13,
+	"birthday" : {
+		"month" : 10,
+		"day" : 2,
+		"year" : 1958
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB",
+		"Microsoft"
+	]
+}
+{
+	"_id" : ObjectId("615502fa246358961f04babf"),
+	"name" : "Billy Bob",
+	"home_state" : "Florida",
+	"lucky_number" : 80,
+	"birthday" : {
+		"month" : 7,
+		"day" : 8,
+		"year" : 1974
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB"
+	]
+}
+{
+	"_id" : ObjectId("61550339246358961f04bac0"),
+	"name" : "Josh Gendal",
+	"home_state" : "Florida",
+	"lucky_number" : 14,
+	"birthday" : {
+		"month" : 1,
+		"day" : 5,
+		"year" : 1991
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB",
+		"guitar"
+	]
+}
+> db.students.find().pretty().count()
+4
+> db.students.remove({name: 'Josh Gendal'})
+WriteResult({ "nRemoved" : 1 })
+> db.students.remove({name: 'Josh Gel'})
+WriteResult({ "nRemoved" : 0 })
+> db.students.find().pretty().count()
+3
+> db.students.find().pretty()
+{
+	"_id" : ObjectId("61550237246358961f04babc"),
+	"name" : "Michael Jordan",
+	"home_state" : "North Carolina",
+	"lucky_number" : 23,
+	"birthday" : {
+		"month" : 1,
+		"day" : 28,
+		"year" : 1965
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB",
+		"basketball"
+	]
+}
+{
+	"_id" : ObjectId("615502c9246358961f04babe"),
+	"name" : "Bill Gates",
+	"home_state" : "Washington",
+	"lucky_number" : 13,
+	"birthday" : {
+		"month" : 10,
+		"day" : 2,
+		"year" : 1958
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB",
+		"Microsoft"
+	]
+}
+{
+	"_id" : ObjectId("615502fa246358961f04babf"),
+	"name" : "Billy Bob",
+	"home_state" : "Florida",
+	"lucky_number" : 80,
+	"birthday" : {
+		"month" : 7,
+		"day" : 8,
+		"year" : 1974
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB"
+	]
+}
+> db.students.remove({lucky_number: {$gt: 5}}, true)
+WriteResult({ "nRemoved" : 1 })
+> db.students.updateMany({}, {$set: {number_of_belts: 0}})
+{ "acknowledged" : true, "matchedCount" : 2, "modifiedCount" : 2 }
+> db.students.find().pretty()
+{
+	"_id" : ObjectId("615502c9246358961f04babe"),
+	"name" : "Bill Gates",
+	"home_state" : "Washington",
+	"lucky_number" : 13,
+	"birthday" : {
+		"month" : 10,
+		"day" : 2,
+		"year" : 1958
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB",
+		"Microsoft"
+	],
+	"number_of_belts" : 0
+}
+{
+	"_id" : ObjectId("615502fa246358961f04babf"),
+	"name" : "Billy Bob",
+	"home_state" : "Florida",
+	"lucky_number" : 80,
+	"birthday" : {
+		"month" : 7,
+		"day" : 8,
+		"year" : 1974
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB"
+	],
+	"number_of_belts" : 0
+}
+> db.students.updateMany({home_state: 'Washington'}, {$inc: {number_of_belts: 1}})
+{ "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
+> db.students.find().pretty()
+{
+	"_id" : ObjectId("615502c9246358961f04babe"),
+	"name" : "Bill Gates",
+	"home_state" : "Washington",
+	"lucky_number" : 13,
+	"birthday" : {
+		"month" : 10,
+		"day" : 2,
+		"year" : 1958
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB",
+		"Microsoft"
+	],
+	"number_of_belts" : 1
+}
+{
+	"_id" : ObjectId("615502fa246358961f04babf"),
+	"name" : "Billy Bob",
+	"home_state" : "Florida",
+	"lucky_number" : 80,
+	"birthday" : {
+		"month" : 7,
+		"day" : 8,
+		"year" : 1974
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB"
+	],
+	"number_of_belts" : 0
+}
+> db.students.updateMany({}, {$rename: {'number_of_belts': 'belts_earned'}})
+{ "acknowledged" : true, "matchedCount" : 2, "modifiedCount" : 2 }
+> db.students.find().pretty()
+{
+	"_id" : ObjectId("615502c9246358961f04babe"),
+	"name" : "Bill Gates",
+	"home_state" : "Washington",
+	"lucky_number" : 13,
+	"birthday" : {
+		"month" : 10,
+		"day" : 2,
+		"year" : 1958
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB",
+		"Microsoft"
+	],
+	"belts_earned" : 1
+}
+{
+	"_id" : ObjectId("615502fa246358961f04babf"),
+	"name" : "Billy Bob",
+	"home_state" : "Florida",
+	"lucky_number" : 80,
+	"birthday" : {
+		"month" : 7,
+		"day" : 8,
+		"year" : 1974
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB"
+	],
+	"belts_earned" : 0
+}
+> db.students.updateMany({}, {$unset: {'lucky_number': ''}})
+{ "acknowledged" : true, "matchedCount" : 2, "modifiedCount" : 2 }
+> db.students.find().pretty()
+{
+	"_id" : ObjectId("615502c9246358961f04babe"),
+	"name" : "Bill Gates",
+	"home_state" : "Washington",
+	"birthday" : {
+		"month" : 10,
+		"day" : 2,
+		"year" : 1958
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB",
+		"Microsoft"
+	],
+	"belts_earned" : 1
+}
+{
+	"_id" : ObjectId("615502fa246358961f04babf"),
+	"name" : "Billy Bob",
+	"home_state" : "Florida",
+	"birthday" : {
+		"month" : 7,
+		"day" : 8,
+		"year" : 1974
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB"
+	],
+	"belts_earned" : 0
+}
+> Date()
+Wed Sep 29 2021 19:01:18 GMT-0600 (MDT)
+> db.students.updateMany({}, {$set: {'updated_on': Date()}})
+{ "acknowledged" : true, "matchedCount" : 2, "modifiedCount" : 2 }
+> Date()
+Wed Sep 29 2021 19:01:55 GMT-0600 (MDT)
+> db.students.find().pretty()
+{
+	"_id" : ObjectId("615502c9246358961f04babe"),
+	"name" : "Bill Gates",
+	"home_state" : "Washington",
+	"birthday" : {
+		"month" : 10,
+		"day" : 2,
+		"year" : 1958
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB",
+		"Microsoft"
+	],
+	"belts_earned" : 1,
+	"updated_on" : "Wed Sep 29 2021 19:01:54 GMT-0600 (MDT)"
+}
+{
+	"_id" : ObjectId("615502fa246358961f04babf"),
+	"name" : "Billy Bob",
+	"home_state" : "Florida",
+	"birthday" : {
+		"month" : 7,
+		"day" : 8,
+		"year" : 1974
+	},
+	"interests" : [
+		"coding",
+		"brunch",
+		"MongoDB"
+	],
+	"belts_earned" : 0,
+	"updated_on" : "Wed Sep 29 2021 19:01:54 GMT-0600 (MDT)"
+}
