@@ -1,17 +1,23 @@
 import './App.css';
+import { Routes, Route } from "react-router-dom";
 import CreateProduct from './components/CreateProduct';
-import {Routes, Route} from "react-router-dom"
+import Main from './components/Main';
+import OneProduct from './components/OneProduct';
+import UpdateProduct from './components/UpdateProduct';
 
 
 function App() {
   return (
     <div className="App">
-      <h1>Product Manager</h1>
-      <hr/>
+
+
       <Routes>
-        <Route path="/products" element={<CreateProduct />} />
+        <Route path="/products" element={<Main />} />
+        <Route path="/products/create" element={<CreateProduct />} />
+        <Route path="/products/:id" element={<OneProduct />} />
+        <Route path="/products/:id/update" element={<UpdateProduct/>} />
       </Routes>
-      
+
     </div>
   );
 }

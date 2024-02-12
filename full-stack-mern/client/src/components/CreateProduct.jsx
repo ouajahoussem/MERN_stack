@@ -1,11 +1,13 @@
 import axios from 'axios'
 import React, { useState } from 'react'
+import {  Link } from 'react-router-dom'
 
 
 const CreateProduct = () => {
     const [title, setTitle] = useState("")
     const [price, setPrice] = useState("")
     const [description, setDescription] = useState("")
+    
 
     const SubmitHandler = (e) => {
         e.preventDefault()
@@ -22,12 +24,7 @@ const CreateProduct = () => {
 
     return (
         <div>
-            Title :{JSON.stringify(title)}<br />
-            Price:{JSON.stringify(price)}<br />
-            Description :{JSON.stringify(description)}<br />
-            <hr />
-            
-
+            <h1>Product Manager</h1>
             <form onSubmit={SubmitHandler} className='col-3 mx-auto'>
                 <div className='mb-3 text-start' >
                     <label htmlFor="" className='form-label fs-4'>Title :</label>
@@ -41,7 +38,8 @@ const CreateProduct = () => {
                     <label htmlFor="" className='form-label fs-4'>Description :</label>
                     <input className='form-control' value={description} onChange={e => { setDescription(e.target.value) }} />
                 </div>
-                <button className='btn btn-primary'>Add Product</button>
+                <button className='btn btn-primary mb-3'>Add Product</button> <br />
+                <Link to="/products/" className='fs-5'>Home</Link>
 
             </form>
 
