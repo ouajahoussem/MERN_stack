@@ -27,7 +27,7 @@ const createCompany = () => ({
 
 app.get("/api/users/new", (req, res) => {
     const newUser = createUser();
-    res.json(newUser);
+    res.json([newUser]);
 });
 app.get("/api/companies/new", (req, res) => {
     const newCompany = createCompany();
