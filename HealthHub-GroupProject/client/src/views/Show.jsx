@@ -160,7 +160,7 @@ function Show() {
               </CardActions>
             </CardOverflow>
           </Card>
-          
+
         </div>
         <div className="p-5 md:w-1/2 border-t md:border-t-0 md:border-l border-gray-300">
           <p className="text-2xl font-semibold border-b border-gray-300 pb-2 mb-5 text-center">
@@ -257,8 +257,8 @@ function Show() {
           </div>
           <div className="flex justify-center items-center mt-5">
             {currentUser.likes &&
-            currentUser.likes.length > 0 &&
-            currentUser.likes.includes(user._id) ? (
+              currentUser.likes.length > 0 &&
+              currentUser.likes.includes(user._id) ? (
               <button onClick={removeLike} className="focus:outline-none">
                 <img
                   className="w-10 h-10"
